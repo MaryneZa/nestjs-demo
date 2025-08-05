@@ -10,11 +10,12 @@ import { Product, ProductSchema } from './schemas/product.schema';
       // Product
       {
         name: Product.name,
-        schema: ProductSchema
+        schema: ProductSchema,
       }
     ])
   ],
   controllers: [ProductsController],
   providers: [ProductsService],
+  exports: [ProductsService]
 })
 export class ProductsModule {}
