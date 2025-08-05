@@ -1,11 +1,23 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './products/products.module';
 
 @Module({
-  imports: [ProductsModule],
+  imports: [MongooseModule.forRoot(
+    'mongodb://root:example@localhost:27017/nestjsdb-example?authSource=admin' // authSource=admin avoid authen failed err
+  ), ProductsModule],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
+  // imports: [
+  //   MongooseModule.forRoot(`mongodb://localhost:27017`, {
+  //     user: 'root',
+  //     pass: 'example',
+  //     dbName: 'dbname',
+  //   }),
+  //   ProductsModule,
+  // ],
